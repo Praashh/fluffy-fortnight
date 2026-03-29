@@ -3,20 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Web Trumpet</title>
+  <title>Fluffy-Fortnight</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <!-- Start Overlay (required for AudioContext) -->
   <div id="start-overlay">
-    <h1>Web Trumpet</h1>
-    <p>Blow across your mic. Slide on the note strip. Make music.</p>
+    <h1>Fluffy-Fortnight</h1>
+    <p>Blow across your mic. Click on the note strip. Make music.</p>
     <button class="start-button">Start Playing</button>
+    <div class="overlay-bottom">
+      <div class="star-tracker">
+        <a href="https://github.com/Praashh/fluffy-fortnight" target="_blank" rel="noopener" class="star-badge" id="star-badge">
+          <svg class="star-icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
+            <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25z"/>
+          </svg>
+          <span>Star</span>
+          <span class="star-count" id="star-count">--</span>
+        </a>
+      </div>
+      <div class="overlay-links">
+        <a href="https://github.com/Praashh" target="_blank" rel="noopener">
+          <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+          GitHub
+        </a>
+        <a href="https://x.com/10Xpraash/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          X
+        </a>
+      </div>
+    </div>
   </div>
 
   <div id="app">
     <div class="header">
-      <h1>Web Trumpet</h1>
+      <h1>Fluffy-Fortnight</h1>
       <div id="blow-indicator"></div>
     </div>
 
@@ -69,10 +90,20 @@
     </div>
 
     <div class="footer">
-      Blow into your mic &middot; Slide on the strip &middot; Hear brass
+      Blow into your mic &middot; click on the strip &middot; Hear brass
     </div>
   </div>
 
+  <script>
+    fetch('https://api.github.com/repos/Praashh/fluffy-fortnight')
+      .then(r => r.json())
+      .then(data => {
+        if (typeof data.stargazers_count === 'number') {
+          document.getElementById('star-count').textContent = data.stargazers_count;
+        }
+      })
+      .catch(() => {});
+  </script>
   <script type="module" src="js/app.js"></script>
 </body>
 </html>

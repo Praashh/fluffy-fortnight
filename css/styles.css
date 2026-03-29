@@ -327,6 +327,80 @@ input[type="range"]::-moz-range-thumb {
   text-align: right;
 }
 
+/* ── Star Tracker ── */
+
+.star-tracker {
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 0;
+}
+
+.star-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.9rem;
+  background: #1a1a24;
+  border: 1px solid #2a2a38;
+  border-radius: 8px;
+  color: #e0e0e8;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.star-badge:hover {
+  border-color: #d4a843;
+  box-shadow: 0 0 12px rgba(212, 168, 67, 0.15);
+}
+
+.star-icon {
+  color: #fbbf24;
+}
+
+.star-count {
+  padding-left: 0.4rem;
+  border-left: 1px solid #2a2a38;
+  color: #888;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Overlay Bottom (star tracker + social links) ── */
+
+.overlay-bottom {
+  position: absolute;
+  bottom: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.overlay-links {
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+}
+
+.overlay-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #666;
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: color 0.15s;
+}
+
+.overlay-links a:hover {
+  color: #d4a843;
+}
+
+.overlay-links svg {
+  flex-shrink: 0;
+}
+
 /* ── Footer ── */
 
 .footer {
