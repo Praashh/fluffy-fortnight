@@ -17,11 +17,6 @@ The final experience should feel like playing a digital trumpet: blow to make so
 - **MIDI Generation**: Convert blow intensity + trackpad position into MIDI messages (Note On/Off, velocity, CC for expression/breath control).
 - **Trackpad Control**: Read trackpad position, gestures, or pressure (if available). Map it intuitively to pitch selection (e.g., horizontal position = note in a scale, vertical = bend or filter).
 - **Sound Output**: Route MIDI to a virtual instrument. Prefer high-quality trumpet/brass VST/AU plugins or built-in macOS soundfonts. Make it sound juicy and expressive (attack, decay, vibrato via CC).
-- **Software Stack Ideas**:
-  - Python (sounddevice or PyAudio for mic input, mido or python-rtmidi for MIDI, pynput or AppKit for trackpad).
-  - Or Swift/Objective-C for native macOS app (Core Audio + AVFoundation for mic, MIDI services).
-  - Integrate with existing tools like AudioSwift (for advanced trackpad MIDI) or Magic MIDI-style routing.
-  - Optional: Electron + Web Audio API for a quick web-based prototype.
 - **UI/UX**: Minimal and playful. Show a simple visualizer (mic level bar + current note). Dark mode, trumpet emoji vibes. Make it instantly fun to play.
 
 ### Extra Vibes & Polish
