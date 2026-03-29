@@ -1,0 +1,357 @@
+/* Dark theme, visualizers, layout */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #0a0a0f;
+  color: #e0e0e8;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* ── Start Overlay ── */
+
+#start-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 15, 0.95);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  cursor: pointer;
+  transition: opacity 0.4s ease;
+}
+
+#start-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#start-overlay h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #d4a843, #e8c96a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+#start-overlay p {
+  font-size: 1.1rem;
+  color: #888;
+  margin-bottom: 2rem;
+}
+
+.start-button {
+  padding: 1rem 3rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #d4a843, #b8912e);
+  color: #0a0a0f;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.start-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(212, 168, 67, 0.4);
+}
+
+/* ── Main Layout ── */
+
+#app {
+  width: 100%;
+  max-width: 900px;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  flex: 1;
+}
+
+.header {
+  text-align: center;
+}
+
+.header h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #d4a843, #e8c96a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Blow Indicator ── */
+
+#blow-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #333;
+  margin: 0.5rem auto;
+  transition: background 0.1s, box-shadow 0.1s;
+}
+
+#blow-indicator.active {
+  background: #4ade80;
+  box-shadow: 0 0 12px rgba(74, 222, 128, 0.6);
+}
+
+/* ── Mic Level ── */
+
+.mic-level-container {
+  background: #1a1a24;
+  border-radius: 6px;
+  height: 12px;
+  overflow: hidden;
+  border: 1px solid #2a2a38;
+}
+
+.mic-level-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 6px;
+  transition: width 0.05s linear;
+}
+
+.mic-level-fill.level-green {
+  background: linear-gradient(90deg, #22c55e, #4ade80);
+}
+
+.mic-level-fill.level-amber {
+  background: linear-gradient(90deg, #f59e0b, #fbbf24);
+}
+
+.mic-level-fill.level-red {
+  background: linear-gradient(90deg, #ef4444, #f87171);
+}
+
+/* ── Note Display ── */
+
+.note-display-container {
+  text-align: center;
+  padding: 1.5rem 0;
+}
+
+#note-display {
+  font-size: 4rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: #e0e0e8;
+  transition: text-shadow 0.15s;
+  min-height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#note-display.glow {
+  color: #fbbf24;
+  text-shadow: 0 0 20px rgba(251, 191, 36, 0.5), 0 0 60px rgba(251, 191, 36, 0.2);
+}
+
+/* ── Note Strip ── */
+
+.note-strip-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.note-strip-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #666;
+}
+
+#note-strip-container {
+  position: relative;
+  height: 80px;
+  background: #12121c;
+  border-radius: 10px;
+  border: 1px solid #2a2a38;
+  overflow: hidden;
+  cursor: crosshair;
+}
+
+#note-strip {
+  position: absolute;
+  inset: 0;
+  display: flex;
+}
+
+.note-segment {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #1e1e2e;
+  transition: background 0.08s;
+}
+
+.note-segment.black {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.note-segment.active {
+  background: rgba(212, 168, 67, 0.15);
+}
+
+.note-label {
+  font-size: 0.65rem;
+  color: #555;
+  pointer-events: none;
+}
+
+.note-segment.active .note-label {
+  color: #d4a843;
+}
+
+#note-highlight {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(212, 168, 67, 0.25), rgba(212, 168, 67, 0.08));
+  border-left: 2px solid #d4a843;
+  border-right: 2px solid #d4a843;
+  opacity: 0;
+  transition: left 0.05s linear, opacity 0.1s;
+  pointer-events: none;
+}
+
+/* ── Controls ── */
+
+.controls {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 1rem;
+  background: #12121c;
+  border-radius: 10px;
+  border: 1px solid #2a2a38;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.control-group label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #666;
+}
+
+.control-group select,
+.control-group input[type="range"] {
+  background: #1a1a24;
+  color: #e0e0e8;
+  border: 1px solid #2a2a38;
+  border-radius: 6px;
+  padding: 0.4rem 0.6rem;
+  font-size: 0.85rem;
+  outline: none;
+}
+
+.control-group select:focus,
+.control-group input[type="range"]:focus {
+  border-color: #d4a843;
+}
+
+.control-group select {
+  cursor: pointer;
+  min-width: 120px;
+}
+
+.sensitivity-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 120px;
+  height: 6px;
+  background: #2a2a38;
+  border-radius: 3px;
+  border: none;
+  padding: 0;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #d4a843;
+  cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #d4a843;
+  cursor: pointer;
+  border: none;
+}
+
+#sensitivity-value {
+  font-size: 0.85rem;
+  color: #888;
+  min-width: 2em;
+  text-align: right;
+}
+
+/* ── Footer ── */
+
+.footer {
+  text-align: center;
+  font-size: 0.7rem;
+  color: #444;
+  padding: 1rem 0;
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 600px) {
+  #app {
+    padding: 1rem;
+  }
+
+  #note-display {
+    font-size: 3rem;
+  }
+
+  #note-strip-container {
+    height: 60px;
+  }
+
+  .controls {
+    gap: 1rem;
+  }
+}

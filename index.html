@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Trumpet</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Start Overlay (required for AudioContext) -->
+  <div id="start-overlay">
+    <h1>Web Trumpet</h1>
+    <p>Blow across your mic. Slide on the note strip. Make music.</p>
+    <button class="start-button">Start Playing</button>
+  </div>
+
+  <div id="app">
+    <div class="header">
+      <h1>Web Trumpet</h1>
+      <div id="blow-indicator"></div>
+    </div>
+
+    <!-- Mic Level -->
+    <div class="mic-level-container">
+      <div id="mic-level-fill" class="mic-level-fill level-green"></div>
+    </div>
+
+    <!-- Note Display -->
+    <div class="note-display-container">
+      <div id="note-display">--</div>
+    </div>
+
+    <!-- Note Strip -->
+    <div class="note-strip-wrapper">
+      <span class="note-strip-label">Slide to pick notes</span>
+      <div id="note-strip-container">
+        <div id="note-strip"></div>
+        <div id="note-highlight"></div>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+      <div class="control-group">
+        <label for="scale-select">Scale</label>
+        <select id="scale-select">
+          <option value="major">Major</option>
+          <option value="minor">Minor</option>
+          <option value="chromatic">Chromatic</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label for="instrument-select">Instrument</label>
+        <select id="instrument-select">
+          <option value="trumpet">Trumpet</option>
+          <option value="trombone">Trombone</option>
+          <option value="flute">Flute</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label for="sensitivity-slider">Sensitivity</label>
+        <div class="sensitivity-row">
+          <input type="range" id="sensitivity-slider" min="0.5" max="3.0" step="0.1" value="1.0">
+          <span id="sensitivity-value">1.0</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      Blow into your mic &middot; Slide on the strip &middot; Hear brass
+    </div>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
